@@ -1,0 +1,21 @@
+.patient-form{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.patient-form h2{
+    margin-bottom:20px;
+}
+
+.patient-form input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    box-sizing:border-box;
+}

@@ -1,0 +1,12 @@
+.dashboard-content {
+  margin-left: 270px;
+  padding: 30px;
+}
+
+.dashboard-content h1 {
+  color: #1e3a8a;
+}
+
+.dashboard-content p {
+  color: #666;
+}

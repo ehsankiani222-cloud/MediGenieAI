@@ -1,0 +1,28 @@
+.patient-table{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    margin-top:20px;
+}
+
+.patient-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.patient-table th{
+    background:#2563eb;
+    color:white;
+    padding:12px;
+    text-align:left;
+}
+
+.patient-table td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+.patient-table tr:hover{
+    background:#f8f9fc;
+}

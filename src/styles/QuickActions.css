@@ -1,0 +1,28 @@
+.quick-actions{
+    background:white;
+    padding:20px;
+    margin-top:30px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.action-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.action-buttons button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.action-buttons button:hover{
+    background:#1d4ed8;
+}

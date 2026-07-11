@@ -1,0 +1,23 @@
+.claims-box{
+    background:white;
+    padding:20px;
+    margin-top:30px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.claims-box table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.claims-box th,
+.claims-box td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #ddd;
+}
+
+.claims-box th{
+    color:#1e3a8a;
+}
