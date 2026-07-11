@@ -6,9 +6,15 @@ const PatientContext = createContext();
 export function PatientProvider({ children }) {
   const [patients, setPatients] = useState(patientsData);
 
-  function addPatient(patient) {
-    setPatients((prev) => [...prev, patient]);
-  }
+ function addPatient(patient) {
+  const newPatient = {
+    id: Date.now(),
+    ...patient,
+    status: "Active",
+  };
+
+  setPatients((prev) => [...prev, newPatient]);
+}
 
   return (
     <PatientContext.Provider
