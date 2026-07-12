@@ -1,6 +1,8 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
+import PaymentSearch from "../components/PaymentSearch";
+import PaymentForm from "../components/PaymentForm";
 import PaymentTable from "../components/PaymentTable";
 
 import "../styles/Payments.css";
@@ -17,6 +19,10 @@ function Payments() {
           title="💰 Payments"
           subtitle="Manage Patient Payments"
         />
+
+        <PaymentSearch />
+
+        <PaymentForm />
 
         <PaymentTable />
       </div>

@@ -3,7 +3,11 @@ import PaymentContext from "../context/PaymentContext";
 import PaymentRow from "./PaymentRow";
 
 function PaymentTable() {
-  const { payments } = useContext(PaymentContext);
+  const { payments, searchTerm } = useContext(PaymentContext);
+
+  const filteredPayments = payments.filter((payment) =>
+    payment.patient.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="patient-table">
@@ -18,7 +22,7 @@ function PaymentTable() {
         </thead>
 
         <tbody>
-          {payments.map((payment) => (
+          {filteredPayments.map((payment) => (
             <PaymentRow
               key={payment.id}
               patient={payment.patient}
