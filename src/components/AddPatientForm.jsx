@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/AddPatientForm.css";
 import PrimaryButton from "./PrimaryButton";
+import PatientContext from "../context/PatientContext";
 
 function AddPatientForm() {
+  const { addPatient } = useContext(PatientContext);
+
   const [name, setName] = useState("");
   const [insurance, setInsurance] = useState("");
   const [provider, setProvider] = useState("");
@@ -13,7 +16,11 @@ function AddPatientForm() {
       return;
     }
 
-    alert("Patient Added Successfully ✅");
+    addPatient({
+      name,
+      insurance,
+      provider,
+    });
 
     setName("");
     setInsurance("");
