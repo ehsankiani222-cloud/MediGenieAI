@@ -26,11 +26,18 @@ export function PaymentProvider({ children }) {
     ]);
   }
 
+  function deletePayment(id) {
+    setPayments((prev) =>
+      prev.filter((payment) => payment.id !== id)
+    );
+  }
+
   return (
     <PaymentContext.Provider
       value={{
         payments,
         addPayment,
+        deletePayment,
         searchTerm,
         setSearchTerm,
       }}

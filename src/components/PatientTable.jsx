@@ -1,18 +1,18 @@
 import { useContext } from "react";
-import PatientContext from "../context/PatientContext";
-import "../styles/PatientTable.css";
-import PatientRow from "./PatientRow";
+import PaymentContext from "../context/PaymentContext";
+import PaymentRow from "./PaymentRow";
 
-function PatientTable() {
+function PaymentTable() {
   const {
-    patients,
+    payments,
     searchTerm,
-    deletePatient,
-    editPatient,
-  } = useContext(PatientContext);
+    deletePayment,
+  } = useContext(PaymentContext);
 
-  const filteredPatients = patients.filter((patient) =>
-    patient.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPayments = payments.filter((payment) =>
+    payment.patient
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -21,44 +21,29 @@ function PatientTable() {
         <thead>
           <tr>
             <th>Patient</th>
-            <th>Insurance</th>
-            <th>Provider</th>
+            <th>Amount</th>
+            <th>Method</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
 
         <tbody>
-          {filteredPatients.map((patient) => (
-            <PatientRow
-              key={patient.id}
-              id={patient.id}
-              name={patient.name}
-              insurance={patient.insurance}
-              provider={patient.provider}
-              status={patient.status}
-              onDelete={deletePatient}
-              onEdit={editPatient}
+          {filteredPayments.map((payment) => (
+            <PaymentRow
+              key={payment.id}
+              id={payment.id}
+              patient={payment.patient}
+              amount={payment.amount}
+              method={payment.method}
+              status={payment.status}
+              onDelete={deletePayment}
             />
           ))}
-
-          {filteredPatients.length === 0 && (
-            <tr>
-              <td
-                colSpan="5"
-                style={{
-                  textAlign: "center",
-                  padding: "20px",
-                }}
-              >
-                No patient found.
-              </td>
-            </tr>
-          )}
         </tbody>
       </table>
     </div>
   );
 }
 
-export default PatientTable;
+export default PaymentTable;

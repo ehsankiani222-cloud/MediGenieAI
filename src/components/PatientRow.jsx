@@ -1,22 +1,24 @@
-function PatientRow({
+function PaymentRow({
   id,
-  name,
-  insurance,
-  provider,
+  patient,
+  amount,
+  method,
   status,
   onDelete,
-  onEdit,
 }) {
   return (
     <tr>
-      <td>{name}</td>
-      <td>{insurance}</td>
-      <td>{provider}</td>
+      <td>{patient}</td>
+      <td>{amount}</td>
+      <td>{method}</td>
 
       <td>
         <span
           style={{
-            color: status === "Active" ? "green" : "orange",
+            color:
+              status === "Paid"
+                ? "green"
+                : "orange",
             fontWeight: "bold",
           }}
         >
@@ -25,21 +27,6 @@ function PatientRow({
       </td>
 
       <td>
-        <button
-          onClick={() => onEdit(id)}
-          style={{
-            background: "#3498db",
-            color: "white",
-            border: "none",
-            padding: "6px 12px",
-            borderRadius: "6px",
-            marginRight: "8px",
-            cursor: "pointer",
-          }}
-        >
-          ✏️ Edit
-        </button>
-
         <button
           onClick={() => onDelete(id)}
           style={{
@@ -58,4 +45,4 @@ function PatientRow({
   );
 }
 
-export default PatientRow;
+export default PaymentRow;
