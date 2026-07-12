@@ -1,5 +1,8 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageHeader from "../components/PageHeader";
+
+import "../styles/Claims.css";
 
 function Claims() {
   return (
@@ -9,9 +12,12 @@ function Claims() {
       <div className="dashboard-content">
         <Navbar />
 
-        <h1>📄 Claims</h1>
+        <PageHeader
+          title="📄 Claims"
+          subtitle="Manage Medical Claims"
+        />
 
-        <p>Claims Module Coming Soon...</p>
+        <h2>Claims Module Coming Next 🚀</h2>
       </div>
     </div>
   );
