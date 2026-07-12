@@ -1,5 +1,4 @@
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import MainLayout from "../layout/MainLayout";
 import PageHeader from "../components/PageHeader";
 import SearchBox from "../components/SearchBox";
 import AddPatientForm from "../components/AddPatientForm";
@@ -8,24 +7,18 @@ import "../styles/Patients.css";
 
 function Patients() {
   return (
-    <div>
-      <Sidebar />
+    <MainLayout>
+      <PageHeader
+        title="👥 Patients"
+        subtitle="Manage all registered patients"
+      />
 
-      <div className="dashboard-content">
-        <Navbar />
+      <SearchBox />
 
-        <PageHeader
-          title="👥 Patients"
-          subtitle="Manage all registered patients"
-        />
+      <AddPatientForm />
 
-        <SearchBox />
-
-        <AddPatientForm />
-
-        <PatientList />
-      </div>
-    </div>
+      <PatientList />
+    </MainLayout>
   );
 }
 
