@@ -17,11 +17,16 @@ export function PatientProvider({ children }) {
     setPatients((prev) => [...prev, newPatient]);
   }
 
+  function deletePatient(id) {
+    setPatients((prev) => prev.filter((patient) => patient.id !== id));
+  }
+
   return (
     <PatientContext.Provider
       value={{
         patients,
         addPatient,
+        deletePatient,
         searchTerm,
         setSearchTerm,
       }}
