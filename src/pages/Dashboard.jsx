@@ -1,36 +1,64 @@
-import MainLayout from "../layout/MainLayout";
+import { useContext } from "react";
+import PatientContext from "../context/PatientContext";
+
+import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 import StatCard from "../components/StatCard";
 import RecentClaims from "../components/RecentClaims";
 import QuickActions from "../components/QuickActions";
+
 import "../styles/Dashboard.css";
 
 function Dashboard() {
+  const { patients } = useContext(PatientContext);
+
   return (
-    <MainLayout>
-      <h1>🏥 MediGenie AI Dashboard</h1>
+    <div>
+      <Sidebar />
 
-      <h3>Welcome, Ehsan!</h3>
+      <div className="dashboard-content">
+        <Navbar />
 
-      <p>Medical Billing AI System</p>
+        <h1>🏥 MediGenie AI Dashboard</h1>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          marginTop: "30px",
-          flexWrap: "wrap",
-        }}
-      >
-        <StatCard title="Patients" value="125" />
-        <StatCard title="Claims" value="48" />
-        <StatCard title="Payments" value="$12,500" />
-        <StatCard title="Denials" value="6" />
+        <h3>Welcome, Ehsan!</h3>
+
+        <p>Medical Billing AI System</p>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            marginTop: "30px",
+            flexWrap: "wrap",
+          }}
+        >
+          <StatCard
+            title="Patients"
+            value={patients.length}
+          />
+
+          <StatCard
+            title="Claims"
+            value="48"
+          />
+
+          <StatCard
+            title="Payments"
+            value="$12,500"
+          />
+
+          <StatCard
+            title="Denials"
+            value="6"
+          />
+        </div>
+
+        <QuickActions />
+
+        <RecentClaims />
       </div>
-
-      <QuickActions />
-
-      <RecentClaims />
-    </MainLayout>
+    </div>
   );
 }
 
