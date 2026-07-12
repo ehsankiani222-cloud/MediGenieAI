@@ -1,5 +1,9 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageHeader from "../components/PageHeader";
+import PaymentTable from "../components/PaymentTable";
+
+import "../styles/Payments.css";
 
 function Payments() {
   return (
@@ -9,9 +13,12 @@ function Payments() {
       <div className="dashboard-content">
         <Navbar />
 
-        <h1>💰 Payments</h1>
+        <PageHeader
+          title="💰 Payments"
+          subtitle="Manage Patient Payments"
+        />
 
-        <p>Payments Module Coming Soon...</p>
+        <PaymentTable />
       </div>
     </div>
   );
