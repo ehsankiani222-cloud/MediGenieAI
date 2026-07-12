@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
-import "./index.css";
 
 import { PatientProvider } from "./context/PatientContext";
+import { ClaimProvider } from "./context/ClaimContext";
+
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <PatientProvider>
-      <App />
+      <ClaimProvider>
+        <App />
+      </ClaimProvider>
     </PatientProvider>
   </BrowserRouter>
 );

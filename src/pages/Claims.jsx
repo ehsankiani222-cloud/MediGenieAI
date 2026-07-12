@@ -1,6 +1,9 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
+import ClaimSearch from "../components/ClaimSearch";
+import ClaimForm from "../components/ClaimForm";
+import ClaimTable from "../components/ClaimTable";
 
 import "../styles/Claims.css";
 
@@ -17,7 +20,11 @@ function Claims() {
           subtitle="Manage Medical Claims"
         />
 
-        <h2>Claims Module Coming Next 🚀</h2>
+        <ClaimSearch />
+
+        <ClaimForm />
+
+        <ClaimTable />
       </div>
     </div>
   );
