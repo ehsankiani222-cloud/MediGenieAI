@@ -10,6 +10,7 @@ export function ClaimProvider({ children }) {
   });
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [editingClaim, setEditingClaim] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("claims", JSON.stringify(claims));
@@ -29,12 +30,33 @@ export function ClaimProvider({ children }) {
     setClaims((prev) => prev.filter((claim) => claim.id !== id));
   }
 
+  function editClaim(id) {
+    const claim = claims.find((c) => c.id === id);
+    setEditingClaim(claim);
+  }
+
+  function updateClaim(updatedClaim) {
+    setClaims((prev) =>
+      prev.map((claim) =>
+        claim.id === updatedClaim.id
+          ? updatedClaim
+          : claim
+      )
+    );
+
+    setEditingClaim(null);
+  }
+
   return (
     <ClaimContext.Provider
       value={{
         claims,
         addClaim,
         deleteClaim,
+        editClaim,
+        updateClaim,
+        editingClaim,
+        setEditingClaim,
         searchTerm,
         setSearchTerm,
       }}

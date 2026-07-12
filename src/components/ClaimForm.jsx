@@ -1,15 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ClaimContext from "../context/ClaimContext";
 import PrimaryButton from "./PrimaryButton";
 import "../styles/ClaimForm.css";
 
 function ClaimForm() {
-  const { addClaim } = useContext(ClaimContext);
+  const {
+    addClaim,
+    updateClaim,
+    editingClaim,
+  } = useContext(ClaimContext);
 
   const [patient, setPatient] = useState("");
   const [dos, setDos] = useState("");
   const [cpt, setCpt] = useState("");
   const [amount, setAmount] = useState("");
+
+  useEffect(() => {
+    if (editingClaim) {
+      setPatient(editingClaim.patient);
+      setDos(editingClaim.dos);
+      setCpt(editingClaim.cpt);
+      setAmount(editingClaim.amount);
+    }
+  }, [editingClaim]);
 
   function handleSubmit() {
     if (!patient || !dos || !cpt || !amount) {
@@ -17,13 +30,23 @@ function ClaimForm() {
       return;
     }
 
-    addClaim({
-      patient,
-      dos,
-      cpt,
-      amount,
-      status: "Submitted",
-    });
+    if (editingClaim) {
+      updateClaim({
+        ...editingClaim,
+        patient,
+        dos,
+        cpt,
+        amount,
+      });
+    } else {
+      addClaim({
+        patient,
+        dos,
+        cpt,
+        amount,
+        status: "Submitted",
+      });
+    }
 
     setPatient("");
     setDos("");
@@ -33,7 +56,9 @@ function ClaimForm() {
 
   return (
     <div className="patient-form">
-      <h2>Add New Claim</h2>
+      <h2>
+        {editingClaim ? "Edit Claim" : "Add New Claim"}
+      </h2>
 
       <input
         type="text"
@@ -63,7 +88,7 @@ function ClaimForm() {
       />
 
       <PrimaryButton
-        text="Add Claim"
+        text={editingClaim ? "Update Claim" : "Add Claim"}
         onClick={handleSubmit}
       />
     </div>

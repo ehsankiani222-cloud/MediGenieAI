@@ -8,10 +8,13 @@ function ClaimTable() {
     claims,
     searchTerm,
     deleteClaim,
+    editClaim,
   } = useContext(ClaimContext);
 
   const filteredClaims = claims.filter((claim) =>
-    claim.patient.toLowerCase().includes(searchTerm.toLowerCase())
+    claim.patient
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -39,6 +42,7 @@ function ClaimTable() {
               amount={claim.amount}
               status={claim.status}
               onDelete={deleteClaim}
+              onEdit={editClaim}
             />
           ))}
         </tbody>
