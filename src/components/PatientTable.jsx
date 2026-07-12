@@ -4,7 +4,12 @@ import "../styles/PatientTable.css";
 import PatientRow from "./PatientRow";
 
 function PatientTable() {
-  const { patients, searchTerm, deletePatient } = useContext(PatientContext);
+  const {
+    patients,
+    searchTerm,
+    deletePatient,
+    editPatient,
+  } = useContext(PatientContext);
 
   const filteredPatients = patients.filter((patient) =>
     patient.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,12 +38,19 @@ function PatientTable() {
               provider={patient.provider}
               status={patient.status}
               onDelete={deletePatient}
+              onEdit={editPatient}
             />
           ))}
 
           {filteredPatients.length === 0 && (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
+              <td
+                colSpan="5"
+                style={{
+                  textAlign: "center",
+                  padding: "20px",
+                }}
+              >
                 No patient found.
               </td>
             </tr>

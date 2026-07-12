@@ -1,27 +1,61 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../styles/AddPatientForm.css";
 import PrimaryButton from "./PrimaryButton";
 import PatientContext from "../context/PatientContext";
 
 function AddPatientForm() {
-  const { addPatient } = useContext(PatientContext);
+  const {
+    addPatient,
+    updatePatient,
+    editingPatient,
+    setEditingPatient,
+  } = useContext(PatientContext);
 
   const [name, setName] = useState("");
   const [insurance, setInsurance] = useState("");
   const [provider, setProvider] = useState("");
 
-  function handleAddPatient() {
+  useEffect(() => {
+    if (editingPatient) {
+      setName(editingPatient.name);
+      setInsurance(editingPatient.insurance);
+      setProvider(editingPatient.provider);
+    } else {
+      setName("");
+      setInsurance("");
+      setProvider("");
+    }
+  }, [editingPatient]);
+
+  function handleSubmit() {
     if (!name || !insurance || !provider) {
       alert("Please fill all fields.");
       return;
     }
 
-    addPatient({
-      name,
-      insurance,
-      provider,
-    });
+    if (editingPatient) {
+      updatePatient({
+        ...editingPatient,
+        name,
+        insurance,
+        provider,
+      });
+    } else {
+      addPatient({
+        name,
+        insurance,
+        provider,
+      });
+    }
 
+    setName("");
+    setInsurance("");
+    setProvider("");
+    setEditingPatient(null);
+  }
+
+  function handleCancel() {
+    setEditingPatient(null);
     setName("");
     setInsurance("");
     setProvider("");
@@ -29,7 +63,9 @@ function AddPatientForm() {
 
   return (
     <div className="patient-form">
-      <h2>Add New Patient</h2>
+      <h2>
+        {editingPatient ? "Edit Patient" : "Add New Patient"}
+      </h2>
 
       <input
         type="text"
@@ -53,9 +89,27 @@ function AddPatientForm() {
       />
 
       <PrimaryButton
-        text="Add Patient"
-        onClick={handleAddPatient}
+        text={editingPatient ? "Update Patient" : "Add Patient"}
+        onClick={handleSubmit}
       />
+
+      {editingPatient && (
+        <button
+          onClick={handleCancel}
+          style={{
+            width: "100%",
+            marginTop: "10px",
+            padding: "10px",
+            border: "none",
+            borderRadius: "6px",
+            background: "#6c757d",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Cancel
+        </button>
+      )}
     </div>
   );
 }
