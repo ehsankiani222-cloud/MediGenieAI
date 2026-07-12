@@ -25,11 +25,16 @@ export function ClaimProvider({ children }) {
     ]);
   }
 
+  function deleteClaim(id) {
+    setClaims((prev) => prev.filter((claim) => claim.id !== id));
+  }
+
   return (
     <ClaimContext.Provider
       value={{
         claims,
         addClaim,
+        deleteClaim,
         searchTerm,
         setSearchTerm,
       }}

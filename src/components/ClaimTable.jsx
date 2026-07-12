@@ -4,7 +4,11 @@ import ClaimRow from "./ClaimRow";
 import "../styles/ClaimTable.css";
 
 function ClaimTable() {
-  const { claims, searchTerm } = useContext(ClaimContext);
+  const {
+    claims,
+    searchTerm,
+    deleteClaim,
+  } = useContext(ClaimContext);
 
   const filteredClaims = claims.filter((claim) =>
     claim.patient.toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,6 +24,7 @@ function ClaimTable() {
             <th>CPT</th>
             <th>Amount</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -27,11 +32,13 @@ function ClaimTable() {
           {filteredClaims.map((claim) => (
             <ClaimRow
               key={claim.id}
+              id={claim.id}
               patient={claim.patient}
               dos={claim.dos}
               cpt={claim.cpt}
               amount={claim.amount}
               status={claim.status}
+              onDelete={deleteClaim}
             />
           ))}
         </tbody>
