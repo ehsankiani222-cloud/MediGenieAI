@@ -2,6 +2,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 import StatCard from "../components/StatCard";
+import BarChart from "../components/charts/BarChart";
 
 function Reports() {
   return (
@@ -29,6 +30,8 @@ function Reports() {
           <StatCard title="Revenue" value="$12,500" />
           <StatCard title="Pending Claims" value="6" />
         </div>
+
+        <BarChart />
       </div>
     </div>
   );
