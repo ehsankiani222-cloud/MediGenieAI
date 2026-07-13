@@ -6,8 +6,14 @@ import RecentClaims from "../components/RecentClaims";
 import QuickActions from "../components/QuickActions";
 import BarChart from "../components/charts/BarChart";
 import PieChart from "../components/charts/PieChart";
+
+import ActivityCard from "../components/dashboard/ActivityCard";
+import RevenueCard from "../components/dashboard/RevenueCard";
+import TopPatients from "../components/dashboard/TopPatients";
+
 import PatientContext from "../context/PatientContext";
 import ClaimContext from "../context/ClaimContext";
+
 import "../styles/Dashboard.css";
 
 function Dashboard() {
@@ -57,6 +63,21 @@ function Dashboard() {
         <BarChart />
 
         <PieChart />
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "20px",
+            marginTop: "30px",
+          }}
+        >
+          <RevenueCard />
+
+          <ActivityCard />
+
+          <TopPatients />
+        </div>
 
         <RecentClaims />
       </div>
