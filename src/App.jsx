@@ -8,20 +8,57 @@ import Reports from "./pages/Reports";
 
 import Login from "./pages/auth/Login";
 
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
 
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/patients" element={<Patients />} />
+      <Route
+        path="/patients"
+        element={
+          <ProtectedRoute>
+            <Patients />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/claims" element={<Claims />} />
+      <Route
+        path="/claims"
+        element={
+          <ProtectedRoute>
+            <Claims />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/payments" element={<Payments />} />
+      <Route
+        path="/payments"
+        element={
+          <ProtectedRoute>
+            <Payments />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/reports" element={<Reports />} />
+      <Route
+        path="/reports"
+        element={
+          <ProtectedRoute>
+            <Reports />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
