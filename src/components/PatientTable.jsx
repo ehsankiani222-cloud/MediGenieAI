@@ -7,6 +7,7 @@ function PaymentTable() {
     payments,
     searchTerm,
     deletePayment,
+    setEditingPayment,
   } = useContext(PaymentContext);
 
   const filteredPayments = payments.filter((payment) =>
@@ -14,6 +15,11 @@ function PaymentTable() {
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
+
+  function handleEdit(id) {
+    const payment = payments.find((p) => p.id === id);
+    setEditingPayment(payment);
+  }
 
   return (
     <div className="patient-table">
@@ -38,6 +44,7 @@ function PaymentTable() {
               method={payment.method}
               status={payment.status}
               onDelete={deletePayment}
+              onEdit={handleEdit}
             />
           ))}
         </tbody>

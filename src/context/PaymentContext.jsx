@@ -10,6 +10,7 @@ export function PaymentProvider({ children }) {
   });
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [editingPayment, setEditingPayment] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("payments", JSON.stringify(payments));
@@ -32,12 +33,27 @@ export function PaymentProvider({ children }) {
     );
   }
 
+  function updatePayment(updatedPayment) {
+    setPayments((prev) =>
+      prev.map((payment) =>
+        payment.id === updatedPayment.id
+          ? updatedPayment
+          : payment
+      )
+    );
+
+    setEditingPayment(null);
+  }
+
   return (
     <PaymentContext.Provider
       value={{
         payments,
         addPayment,
         deletePayment,
+        updatePayment,
+        editingPayment,
+        setEditingPayment,
         searchTerm,
         setSearchTerm,
       }}
