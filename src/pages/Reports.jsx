@@ -1,5 +1,7 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageHeader from "../components/PageHeader";
+import StatCard from "../components/StatCard";
 
 function Reports() {
   return (
@@ -9,9 +11,24 @@ function Reports() {
       <div className="dashboard-content">
         <Navbar />
 
-        <h1>📊 Reports</h1>
+        <PageHeader
+          title="📊 Reports"
+          subtitle="Analytics & Business Overview"
+        />
 
-        <p>Reports Module Coming Soon...</p>
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            flexWrap: "wrap",
+            marginTop: "30px",
+          }}
+        >
+          <StatCard title="Total Patients" value="125" />
+          <StatCard title="Total Claims" value="48" />
+          <StatCard title="Revenue" value="$12,500" />
+          <StatCard title="Pending Claims" value="6" />
+        </div>
       </div>
     </div>
   );

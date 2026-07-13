@@ -16,10 +16,10 @@ function PaymentTable() {
       .includes(searchTerm.toLowerCase())
   );
 
-  function handleEdit(id) {
-    const payment = payments.find((p) => p.id === id);
+  const handleEdit = (id) => {
+    const payment = payments.find((item) => item.id === id);
     setEditingPayment(payment);
-  }
+  };
 
   return (
     <div className="patient-table">

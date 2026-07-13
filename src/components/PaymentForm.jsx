@@ -1,35 +1,60 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PaymentContext from "../context/PaymentContext";
 import PrimaryButton from "./PrimaryButton";
 import "../styles/AddPatientForm.css";
 
 function PaymentForm() {
-  const { addPayment } = useContext(PaymentContext);
+  const {
+    addPayment,
+    updatePayment,
+    editingPayment,
+  } = useContext(PaymentContext);
 
   const [patient, setPatient] = useState("");
   const [amount, setAmount] = useState("");
   const [method, setMethod] = useState("");
 
-  function handleSubmit() {
+  useEffect(() => {
+    if (editingPayment) {
+      setPatient(editingPayment.patient);
+      setAmount(editingPayment.amount);
+      setMethod(editingPayment.method);
+    } else {
+      setPatient("");
+      setAmount("");
+      setMethod("");
+    }
+  }, [editingPayment]);
+
+  const handleSubmit = () => {
     if (!patient || !amount || !method) {
       alert("Please fill all fields.");
       return;
     }
 
-    addPayment({
-      patient,
-      amount,
-      method,
-    });
+    if (editingPayment) {
+      updatePayment({
+        ...editingPayment,
+        patient,
+        amount,
+        method,
+      });
+    } else {
+      addPayment({
+        patient,
+        amount,
+        method,
+      });
+    }
 
     setPatient("");
     setAmount("");
     setMethod("");
-  }
+  };
 
   return (
     <div className="patient-form">
-      <h2>Add Payment</h2>
+      <h2>{editingPayment ? "Edit Payment" : "Add Payment"}</h2>
 
       <input
         type="text"
@@ -53,7 +78,7 @@ function PaymentForm() {
       />
 
       <PrimaryButton
-        text="Add Payment"
+        text={editingPayment ? "Update Payment" : "Add Payment"}
         onClick={handleSubmit}
       />
     </div>
