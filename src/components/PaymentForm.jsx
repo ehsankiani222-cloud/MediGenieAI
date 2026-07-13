@@ -26,7 +26,7 @@ function PaymentForm() {
     }
   }, [editingPayment]);
 
-  const handleSubmit = () => {
+  function handleSubmit() {
     if (!patient || !amount || !method) {
       alert("Please fill all fields.");
       return;
@@ -50,11 +50,13 @@ function PaymentForm() {
     setPatient("");
     setAmount("");
     setMethod("");
-  };
+  }
 
   return (
     <div className="patient-form">
-      <h2>{editingPayment ? "Edit Payment" : "Add Payment"}</h2>
+      <h2>
+        {editingPayment ? "Edit Payment" : "Add Payment"}
+      </h2>
 
       <input
         type="text"

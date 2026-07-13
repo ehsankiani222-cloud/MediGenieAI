@@ -17,14 +17,13 @@ export function PaymentProvider({ children }) {
   }, [payments]);
 
   function addPayment(payment) {
-    setPayments((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        ...payment,
-        status: "Paid",
-      },
-    ]);
+    const newPayment = {
+      id: Date.now(),
+      ...payment,
+      status: "Paid",
+    };
+
+    setPayments((prev) => [...prev, newPayment]);
   }
 
   function deletePayment(id) {
