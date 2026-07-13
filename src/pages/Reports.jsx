@@ -2,7 +2,10 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 import StatCard from "../components/StatCard";
+
 import BarChart from "../components/charts/BarChart";
+import PieChart from "../components/charts/PieChart";
+import LineChart from "../components/charts/LineChart";
 
 function Reports() {
   return (
@@ -32,6 +35,10 @@ function Reports() {
         </div>
 
         <BarChart />
+
+        <PieChart />
+
+        <LineChart />
       </div>
     </div>
   );
