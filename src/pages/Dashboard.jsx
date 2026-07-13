@@ -1,16 +1,27 @@
 import { useContext } from "react";
-import PatientContext from "../context/PatientContext";
-
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import StatCard from "../components/StatCard";
 import RecentClaims from "../components/RecentClaims";
 import QuickActions from "../components/QuickActions";
-
+import PatientContext from "../context/PatientContext";
+import ClaimContext from "../context/ClaimContext";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
   const { patients } = useContext(PatientContext);
+  const { claims } = useContext(ClaimContext);
+
+  const totalPatients = patients.length;
+  const totalClaims = claims.length;
+
+  const submittedClaims = claims.filter(
+    (claim) => claim.status === "Submitted"
+  ).length;
+
+  const paidClaims = claims.filter(
+    (claim) => claim.status === "Paid"
+  ).length;
 
   return (
     <div>
@@ -35,22 +46,22 @@ function Dashboard() {
         >
           <StatCard
             title="Patients"
-            value={patients.length}
+            value={totalPatients}
           />
 
           <StatCard
             title="Claims"
-            value="48"
+            value={totalClaims}
           />
 
           <StatCard
-            title="Payments"
-            value="$12,500"
+            title="Submitted"
+            value={submittedClaims}
           />
 
           <StatCard
-            title="Denials"
-            value="6"
+            title="Paid"
+            value={paidClaims}
           />
         </div>
 
