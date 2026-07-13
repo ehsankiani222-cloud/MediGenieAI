@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import AuthContext from "../../context/auth/AuthContext";
 
 function LoginForm() {
+  const { login } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
 
   function handleLogin(e) {
@@ -12,7 +20,9 @@ function LoginForm() {
       return;
     }
 
-    alert("✅ Login Successful (Demo)");
+    login(email);
+
+    navigate("/dashboard");
   }
 
   return (
@@ -21,7 +31,9 @@ function LoginForm() {
         type="email"
         placeholder="Email Address"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) =>
+          setEmail(e.target.value)
+        }
         style={{
           width: "100%",
           padding: "12px",
@@ -33,7 +45,9 @@ function LoginForm() {
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) =>
+          setPassword(e.target.value)
+        }
         style={{
           width: "100%",
           padding: "12px",
