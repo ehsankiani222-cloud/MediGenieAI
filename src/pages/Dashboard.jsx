@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import StatCard from "../components/StatCard";
 import RecentClaims from "../components/RecentClaims";
 import QuickActions from "../components/QuickActions";
+import BarChart from "../components/charts/BarChart";
+import PieChart from "../components/charts/PieChart";
 import PatientContext from "../context/PatientContext";
 import ClaimContext from "../context/ClaimContext";
 import "../styles/Dashboard.css";
@@ -32,9 +34,9 @@ function Dashboard() {
 
         <h1>🏥 MediGenie AI Dashboard</h1>
 
-        <h3>Welcome, Ehsan!</h3>
+        <h3>Welcome, Ehsan 👋</h3>
 
-        <p>Medical Billing AI System</p>
+        <p>Medical Billing AI Management System</p>
 
         <div
           style={{
@@ -44,28 +46,17 @@ function Dashboard() {
             flexWrap: "wrap",
           }}
         >
-          <StatCard
-            title="Patients"
-            value={totalPatients}
-          />
-
-          <StatCard
-            title="Claims"
-            value={totalClaims}
-          />
-
-          <StatCard
-            title="Submitted"
-            value={submittedClaims}
-          />
-
-          <StatCard
-            title="Paid"
-            value={paidClaims}
-          />
+          <StatCard title="Patients" value={totalPatients} />
+          <StatCard title="Claims" value={totalClaims} />
+          <StatCard title="Submitted" value={submittedClaims} />
+          <StatCard title="Paid" value={paidClaims} />
         </div>
 
         <QuickActions />
+
+        <BarChart />
+
+        <PieChart />
 
         <RecentClaims />
       </div>
