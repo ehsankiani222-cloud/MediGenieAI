@@ -24,7 +24,12 @@ function PaymentRow({
         </span>
       </td>
 
-      <td style={{ display: "flex", gap: "8px" }}>
+      <td
+        style={{
+          display: "flex",
+          gap: "10px",
+        }}
+      >
         <button
           onClick={() => onEdit(id)}
           style={{
@@ -36,7 +41,7 @@ function PaymentRow({
             cursor: "pointer",
           }}
         >
-          ✏️ Edit
+          ✏ Edit
         </button>
 
         <button
